@@ -1,8 +1,9 @@
 extends ../layout
 
 block content
-    h3= book.name
-
+    h3= book.title
+    a(href=`/books/edit/${book.id}`) Edit Book
     div
-        p Authors: #{course.authors}
+        p Authors: #{book.authors}
+        p Genre: #{book.genre}
 
