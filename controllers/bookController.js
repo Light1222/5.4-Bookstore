@@ -61,3 +61,11 @@ module.exports.updateBook = async function(req, res){
     res.redirect(`/books/profile/${req.params.id}`)
 }
 //delete
+module.exports.deleteBook = async function(req, res) {
+    await Book.destroy({
+        where: {
+            id: req.params.id
+        }
+    });
+    res.redirect('/books')
+}
