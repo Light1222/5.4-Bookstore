@@ -15,7 +15,7 @@ block content
                     th First
                     th Last
                     th DOB
-                    th Books Written
+                    //th Books Written
                     th
             tbody
                 each author in book.authors
@@ -23,7 +23,7 @@ block content
                         td= author.first_name
                         td= author.last_name
                         td= author.dob
-                        td= author.book_written
+                        //td= author.book_written
                         td
                             a(href=`/authors/profile/${author.id}`) View Author
 

@@ -14,8 +14,8 @@ module.exports = (sequelize, DataTypes) => {
       Book.belongsToMany(models.Author, {
         through: 'authors_books',
         as: 'authors',
-        foreignKey: 'book_id',
-        otherKey: 'author_id',
+        foreignKey: 'books_id',
+        otherKey: 'authors_id',
         timestamps: false
       })
     }
@@ -30,6 +30,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Book',
+    timestamps: false,
+    tableName: 'books'
   });
   return Book;
 };
