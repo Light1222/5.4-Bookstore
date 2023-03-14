@@ -7,15 +7,16 @@ module.exports.viewAll = async function (req, res) {
     res.render('book/view_all', {books})
 }
 //profile
-module.exports.viewProfile= async function(req, res) {
-    const book = await Book.findByPk(req.params.id);
+module.exports.viewProfile= async function(req, res){
+    const book = await Book.findByPk(req.params.id,{
+        include: 'authors'
+    });
     res.render('book/profile', {book})
 }
 //render add form
 module.exports.renderAddForm = function(req, res){
     const book = {
         title: '',
-        authors: '',
         publisher: '',
         genre: 0,
         pages: '',
@@ -29,7 +30,6 @@ module.exports.renderAddForm = function(req, res){
 module.exports.addBook = async function(req, res){
     const book = await Book.create({
         title: req.body.title,
-        authors: req.body.authors,
         publisher: req.body.publisher,
         genre: req.body.genre,
         pages: req.body.pages,
@@ -47,7 +47,6 @@ module.exports.renderEditForm = async function(req, res){
 module.exports.updateBook = async function(req, res){
     const book = await Book.update({
         title: req.body.title,
-        authors: req.body.authors,
         publisher: req.body.publisher,
         genre: req.body.genre,
         pages: req.body.pages,

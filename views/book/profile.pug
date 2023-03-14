@@ -7,4 +7,23 @@ block content
     div
         p Authors: #{book.authors}
         p Genre: #{book.genre}
+    div.authors
+        h4 Authors
+        table
+            thead
+                tr
+                    th First
+                    th Last
+                    th DOB
+                    th Books Written
+                    th
+            tbody
+                each author in book.authors
+                    tr
+                        td= author.first_name
+                        td= author.last_name
+                        td= author.dob
+                        td= author.book_written
+                        td
+                            a(href=`/authors/profile/${author.id}`) View Author
 
