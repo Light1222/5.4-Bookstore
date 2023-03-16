@@ -7,8 +7,24 @@ mixin bookForm(book, genres, saveUrl, cancelUrl)
                 input(id='title' name='title' value= book.title)
 
             div.form-input
-                label(for='authors') Author
-                input(id='authors' name='authors' value= book.authors)
+                label(for='page') # of pages
+                input(id='page' name='page' value= book.page)
+
+            div.form-input
+                label(for='image') Book Image
+                input(id='image' name='image')
+
+            div.form-input
+                label(for='description') description
+                input(id='description' name='description')
+
+            div.form-input
+                label(for='publisher') Publisher
+                input(id='publisher' name='publisher' value= book.publisher)
+
+            //div.form-input
+            //    label(for='authors') Author
+            //    input(id='authors' name='authors' value= book.authors)
 
             div.form-input
                 label(for='genre') Genre

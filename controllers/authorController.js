@@ -1,4 +1,4 @@
-const {Author} = require ('../models')
+const {Author, Book} = require ('../models')
 
 //view all
 module.exports.viewAll = async function(req, res) {
@@ -10,7 +10,14 @@ module.exports.viewProfile = async function(req, res){
     const author = await Author.findByPk(req.params.id, {
         include: 'books'
     });
-    res.render('author/profile', {author})
+    const books = await Book.findAll();
+    let availableBooks = [];
+    for (let i=0; i<books.length; i++){
+        if (!authorHasBook(author, books[i])){
+            availableBooks.push(books[i]);
+        }
+    }
+    res.render('author/profile', {author, availableBooks})
 }
 //render add
 module.exports.renderAddForm = function(req, res){
@@ -59,4 +66,23 @@ module.exports.updateAuthor = async function(req, res){
         }
     });
     res.redirect(`/authors/profile/${req.params.id}`);
+}
+
+function authorHasBook(author, book){
+    for (let i=0; i<author.books.length; i++){
+        if (book.id === author.books[i].id){
+            return true
+        }
+    }
+    return false
+}
+
+//add book to author
+module.exports.addAuthor = async function (req, res) {
+
+        await AuthorsBooks.create({
+            author_id: req.params.authorId,
+            book_id: req.body.book
+        })
+    res.redirect(`/authors/profile/${req.params.authorId}`)
 }

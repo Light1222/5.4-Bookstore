@@ -9,6 +9,11 @@ block content
             h3 DOB: #{author.dob}
 
             h4 Authors
+            form(action=`/authors/${author.id}/enroll` method='post')
+                select(name='book' id='book' autocomplete=off)
+                    each book in availableBooks
+                        option(value=book.id) #{book.title}
+                    button.button(type='submit') Add
             table
                 thead
                     tr

@@ -24,5 +24,6 @@ router.post('/authors/edit/:id', authorController.updateAuthor)
 router.get('/authors/add', authorController.renderAddForm)
 router.post('/authors/add', authorController.addAuthor)
 router.get('/authors/delete/:id', authorController.deleteAuthor)
+router.post('/authors/:authorId/add/', authorController.addAuthor)
 
 module.exports = router;
