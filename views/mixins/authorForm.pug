@@ -14,10 +14,10 @@ mixin authorForm(author, saveUrl, cancelUrl)
                 label(for='dob') DOB
                 input(id='dob' name='dob' value= author.dob)
 
-            div.form-input
-                label(for='book_written') Books Written
-                input(id='book_written' name='book_written' value= author.book_written)
+            //div.form-input
+            //    label(for='book_written') Books Written
+            //    input(id='book_written' name='book_written' value= author.book_written)
 
             div.form-buttons
                 a.button(href=cancelUrl) Cancel
-                button.button(type='submit') Save
+                button.button.primary(type='submit') Save
