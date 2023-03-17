@@ -1,4 +1,4 @@
-const {Author, Book} = require ('../models')
+const {Author, Book, BookAuthor} = require ('../models')
 
 //view all
 module.exports.viewAll = async function(req, res) {
@@ -8,7 +8,7 @@ module.exports.viewAll = async function(req, res) {
 //profile
 module.exports.viewProfile = async function(req, res){
     const author = await Author.findByPk(req.params.id, {
-        include: 'books'
+        include: 'book'
     });
     const books = await Book.findAll();
     let availableBooks = [];
@@ -69,20 +69,31 @@ module.exports.updateAuthor = async function(req, res){
 }
 
 function authorHasBook(author, book){
-    for (let i=0; i<author.books.length; i++){
-        if (book.id === author.books[i].id){
+    for (let i=0; i<author.book.length; i++){
+        if (book.id === author.book[i].id){
             return true
         }
     }
     return false
 }
 
-//add book to author
-module.exports.addAuthor = async function (req, res) {
+// add book to author
+module.exports.addBookToAuthor = async function (req, res) {
 
-        await AuthorsBooks.create({
-            author_id: req.params.authorId,
-            book_id: req.body.book
-        })
+    await BookAuthor.create({
+        book_id: req.body.book,
+        author_id: req.params.authorId
+    })
+    res.redirect(`/authors/profile/${req.params.authorId}`)
+}
+
+// remove book from author
+module.exports.removeBook = async function (req, res) {
+    await BookAuthor.destroy({
+        where: {
+            book_id: req.params.bookId,
+            author_id: req.params.authorId
+        }
+    });
     res.redirect(`/authors/profile/${req.params.authorId}`)
 }

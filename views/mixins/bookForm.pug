@@ -3,20 +3,20 @@ mixin bookForm(book, genres, saveUrl, cancelUrl)
     div.form-container
         form(action=saveUrl method='post')
             div.form-input
-                label(for='book') Book Title
+                label(for='title') Book Title
                 input(id='title' name='title' value= book.title)
 
             div.form-input
                 label(for='page') # of pages
-                input(id='page' name='page' value= book.page)
+                input(id='page' name='page' type='number', value= book.page)
 
             div.form-input
                 label(for='image') Book Image
-                input(id='image' name='image')
+                input(id='image' name='image' value= book.image)
 
             div.form-input
-                label(for='description') description
-                input(id='description' name='description')
+                label(for= 'description') Description:
+                textarea(id= 'description' name= 'description' rows=10 cols=80) #{book.description}
 
             div.form-input
                 label(for='publisher') Publisher

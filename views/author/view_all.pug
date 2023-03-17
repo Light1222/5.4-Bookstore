@@ -9,6 +9,7 @@ block content
                 th First Name
                 th Last Name
                 th DOB
+                th
         tbody
             each author in authors
                 tr
@@ -17,3 +18,4 @@ block content
                     td= author.dob
                     td
                         a(href=`/authors/profile/${author.id}`) View Author
+                        a(href = `/authors/delete/${author.id}`) Delete Author

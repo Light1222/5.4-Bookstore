@@ -9,22 +9,22 @@ block content
             h3 DOB: #{author.dob}
 
             h4 Authors
-            form(action=`/authors/${author.id}/enroll` method='post')
+            form(action=`/authors/${author.id}/add/` method='post')
                 select(name='book' id='book' autocomplete=off)
                     each book in availableBooks
                         option(value=book.id) #{book.title}
-                    button.button(type='submit') Add
+                    button.button.primary(type='submit') Add
             table
                 thead
                     tr
                         th Book Title
                         th Author
-                        th DOB
-                        th
+                        th Publisher
                 tbody
                     each book in author.books
                         tr
                             td= book.title
                             td= book.authors
+                            td= book.publisher
                             td
                                 a(href=`/books/profile/${book.id}`) View Books

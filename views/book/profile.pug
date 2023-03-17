@@ -5,7 +5,7 @@ block content
     a(href=`/books/edit/${book.id}`) Edit Book
     a(href=`/books/delete/${book.id}`) Delete Book
     div
-        p Authors: #{book.authors}
+        img.image(src= book.image)
         p Genre: #{book.genre}
     div.authors
         h4 Authors
