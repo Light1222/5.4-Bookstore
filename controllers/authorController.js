@@ -1,4 +1,4 @@
-const {Author, Book, BookAuthor} = require ('../models')
+const {Author, Book, BooksAuthors} = require ('../models')
 
 //view all
 module.exports.viewAll = async function(req, res) {
@@ -80,7 +80,7 @@ function authorHasBook(author, book){
 // add book to author
 module.exports.addBookToAuthor = async function (req, res) {
 
-    await BookAuthor.create({
+    await BooksAuthors.create({
         book_id: req.body.book,
         author_id: req.params.authorId
     })
@@ -89,7 +89,7 @@ module.exports.addBookToAuthor = async function (req, res) {
 
 // remove book from author
 module.exports.removeBook = async function (req, res) {
-    await BookAuthor.destroy({
+    await BooksAuthors.destroy({
         where: {
             book_id: req.params.bookId,
             author_id: req.params.authorId
